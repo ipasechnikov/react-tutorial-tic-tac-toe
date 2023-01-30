@@ -13,7 +13,7 @@ function Square(props) {
 class Board extends React.Component {
     renderSquare(i) {
         return (
-            <Square 
+            <Square key={i}
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
             />
@@ -28,7 +28,7 @@ class Board extends React.Component {
         }
 
         return (
-            <div className="board-row">
+            <div key={rowIndex} className="board-row">
                 {squares}
             </div>
         )
@@ -57,6 +57,7 @@ class Game extends React.Component {
                 squareMove: null,
             }],
             stepNumber: 0,
+            movesReverseSortOrder: false,
             xIsNext: true,
         };
     }
@@ -88,25 +89,35 @@ class Game extends React.Component {
         });
     }
 
+    toggleSort() {
+        this.setState({
+            movesReverseSortOrder: !this.state.movesReverseSortOrder
+        });
+    }
+
     render() {
         const history = this.state.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
 
-        const moves = history.map((step, move) => {
+        let moves = history.map((step, move) => {
             let squareMove = step.squareMove;
             let row = Math.floor(squareMove / 3) + 1;
             let col = squareMove % 3 + 1;
 
             const desc = move ? `Go to move #${move} (row: ${row}; col: ${col})` : `Go to game start`;
             return (
-                <li key={move}>
+                <li key={squareMove}>
                     <button onClick={() => this.jumpTo(move)}>
                         <span style={{ fontWeight: move === this.state.stepNumber ? 'bold' : 'normal' }}>{desc}</span>
                     </button>
                 </li>
             );
         });
+
+        if (this.state.movesReverseSortOrder) {
+            moves = moves.reverse();
+        }
 
         let status;
         if (winner) {
@@ -123,6 +134,7 @@ class Game extends React.Component {
                 </div>
                 <div className="game-info">
                     <div>{status}</div>
+                    <button onClick={() => this.toggleSort()}>Toggle moves sort order</button>
                     <ol>{moves}</ol>
                 </div>
             </div>
