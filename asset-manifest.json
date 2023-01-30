@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/react-tutorial-tic-tac-toe/static/css/main.22941023.css",
-    "main.js": "/react-tutorial-tic-tac-toe/static/js/main.da6a5742.js",
+    "main.js": "/react-tutorial-tic-tac-toe/static/js/main.2aa30b58.js",
     "index.html": "/react-tutorial-tic-tac-toe/index.html",
     "main.22941023.css.map": "/react-tutorial-tic-tac-toe/static/css/main.22941023.css.map",
-    "main.da6a5742.js.map": "/react-tutorial-tic-tac-toe/static/js/main.da6a5742.js.map"
+    "main.2aa30b58.js.map": "/react-tutorial-tic-tac-toe/static/js/main.2aa30b58.js.map"
   },
   "entrypoints": [
     "static/css/main.22941023.css",
-    "static/js/main.da6a5742.js"
+    "static/js/main.2aa30b58.js"
   ]
 }
