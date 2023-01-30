@@ -60,6 +60,7 @@ class Game extends React.Component {
                 squaresWin: null,
                 squareMove: null,
                 winner: null,
+                isDraw: false,
             }],
             stepNumber: 0,
             movesReverseSortOrder: false,
@@ -87,6 +88,7 @@ class Game extends React.Component {
                 squaresWin: winnerLine,
                 squareMove: i,
                 winner: winnerLine ? nextPlayer : null,
+                isDraw: !squares.includes(null)
             }]),
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext,
@@ -132,6 +134,8 @@ class Game extends React.Component {
         let status;
         if (current.winner) {
             status = `Winner: ${current.winner}`
+        } else if (current.isDraw) {
+            status = 'Draw';
         } else {
             const nextPlayer = this.state.xIsNext ? 'X' : 'O';
             status = `Next player: ${nextPlayer}`;
